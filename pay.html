@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+.payment-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+
+
+.payment-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+
+.payment-details p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+
+#qr-code {
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+
+#payment-status {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+}
+
+
+#backToCartBtn {
+    background-color: #ff6347;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#backToCartBtn:hover {
+    background-color: #45a049;
+}
+
+
+@media (max-width: 600px) {
+    .payment-container {
+        padding: 15px;
+    }
+
+    #backToCartBtn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .payment-details p {
+        font-size: 16px;
+    }
+}
+
+.pay-to-bt
+{
+    text-decoration: none;
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: white !important;
+    padding: 12px 24px ;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+}
+
+.payment-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#qrCodeContainer {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#thankYouMessage {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e0ffe0;
+    color: #007700;
+}
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>Payment</h1>
+        <p>Total Amount: ₹<span id="paymentAmount"></span></p>
+        <div id="qrCodeContainer"></div>
+        <button id="completePaymentBtn"  onclick="generatePDF()">Complete Payment</button>
+
+        <div id="thankYouMessage" style="display: none;">
+            <h2>Thank You for Your Payment!</h2>
+            <p>Your payment has been successfully processed. You will be redirected to your orders page shortly.</p>
+        </div>
+    </div>
+    <script>
+
+        
+function generatePDF() {
+
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            
+            doc.setFontSize(22);
+            doc.setFont("poppins", "bold");
+            doc.text("Shagun Hotel", 14, 20);
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text("Address: Navagoan Dahisar west  ,Mumbai,Maharashtra, 400068", 14, 30);
+            doc.text("Phone: +1234567890", 14, 40);
+
+           
+            doc.setFontSize(18);
+            doc.setFont("helvetica", "bold");
+            doc.text("Your Bill", 14, 60);
+
+           
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Date: ${new Date().toLocaleDateString()}`, 14, 70);
+            doc.text(`Time: ${new Date().toLocaleTimeString()}`, 14, 80);
+
+
+            doc.setFontSize(14);
+            doc.setFont("poppins", "bold");
+            doc.text('Food Items:', 14, 100);
+
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            const foodItems = JSON.parse(localStorage.getItem('cart')) || [];
+            let yOffset = 110;
+            foodItems.forEach(item => {
+                doc.text(`${item.name} - ₹${item.price} x ${item.quantity}`, 14, yOffset);
+                yOffset += 10;
+            });
+
+
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            doc.text('Delivery Details:', 14, yOffset + 10);
+
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            const name = localStorage.getItem('deliveryName') || 'N/A';
+            const phone = localStorage.getItem('deliveryPhone') || 'N/A';
+            const address = localStorage.getItem('deliveryAddress') || 'N/A';
+            const district = localStorage.getItem('deliveryDistrict') || 'N/A';
+            const state = localStorage.getItem('deliveryState') || 'N/A';
+            const pincode = localStorage.getItem('deliveryPincode') || 'N/A';
+            doc.text(`Name: ${name}`, 14, yOffset + 20);
+            doc.text(`Phone: ${phone}`, 14, yOffset + 30);
+            doc.text(`Address: ${address}`, 14, yOffset + 40);
+            doc.text(`District: ${district}`, 14, yOffset + 50);
+            doc.text(`State: ${state}`, 14, yOffset + 60);
+            doc.text(`Pincode: ${pincode}`, 14, yOffset + 70);
+
+
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "bold");
+            doc.text('Payment Method:', 14, yOffset + 90);
+
+            doc.setFontSize(12);
+            doc.setFont("helvetica", "normal");
+            const paymentMethod = localStorage.getItem('paymentMethod') || 'N/A';
+            doc.text(paymentMethod, 14, yOffset + 100);
+
+  
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "italic");
+            doc.text('Thank you for dining with us!', 14, yOffset + 120);
+            doc.text('For any queries, please contact us at shagunhotel@gmail.com', 14, yOffset + 130);
+
+
+            doc.save('Bill-Reciept.pdf');
+        }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentAmountElement = document.getElementById('paymentAmount');
+    const qrCodeContainer = document.getElementById('qrCodeContainer');
+    const completePaymentBtn = document.getElementById('completePaymentBtn');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    paymentAmountElement.textContent = totalAmount.toFixed(2);
+
+
+    const upiId = "yurajchinarathod@upi"; 
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=${upiId}&pn=YourName&mc=1234&tid=1234567890&tt=P&am=${totalAmount}&cu=INR&size=150x150`;
+    qrCodeContainer.innerHTML = `<img src="${qrCodeUrl}" alt="QR Code" style="max-width: 100%; height: auto;">`;
+
+    function handlePaymentCompletion() {
+        
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push({
+            date: new Date().toLocaleDateString(),
+            items: cart,
+            total: totalAmount
+        });
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+       
+        localStorage.removeItem('cart');
+
+        
+        thankYouMessage.style.display = 'block';
+
+       
+        setTimeout(() => {
+            window.location.href = 'http://127.0.0.1:5500/order.html';
+        }, 3000); 
+    }
+
+    completePaymentBtn.addEventListener('click', handlePaymentCompletion);
+});
+
+    </script>
+</body>
+</html>

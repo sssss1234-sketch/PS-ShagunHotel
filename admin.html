@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6347;
+        }
+
+        .login-form,
+        .admin-form {
+            display: none;
+        }
+
+        .login-form input,
+        .admin-form input {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-form button,
+        .admin-form button {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            background-color: #45a049;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .login-form button:hover,
+        .admin-form button:hover {
+            background-color: #3e8e41;
+        }
+
+        .food-list {
+            margin-top: 20px;
+        }
+
+        .food-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .food-item button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .food-item button.edit {
+            background-color: #ffa500;
+            color: white;
+        }
+
+        .food-item button.remove {
+            background-color: #ff6347;
+            color: white;
+        }
+
+        #clearDataBtn {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#clearDataBtn:hover {
+    background-color: #e55335;
+}
+
+#clearDataBtn:active {
+    background-color: #d94f3f;
+}
+
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .food-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Ensure admin panel looks appealing */
+        #adminForm {
+            display: block;
+        }
+
+        .login-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+
+        <!-- Admin Functions Form -->
+        <div class="admin-form" id="adminForm">
+            <input type="text" id="foodName" placeholder="Enter Food Name">
+            <input type="number" id="foodPrice" placeholder="Enter Food Price">
+            <button id="addFoodButton">Add Food</button>
+            <button id="clearDataBtn">Clear All Data</button>
+        </div>
+
+
+        <!-- Food List -->
+        <div class="food-list" id="foodList">
+            <!-- Food items will be shown here -->
+        </div>
+    </div>
+
+    
+    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminForm = document.getElementById('adminForm');
+            const addFoodButton = document.getElementById('addFoodButton');
+            const foodNameInput = document.getElementById('foodName');
+            const foodPriceInput = document.getElementById('foodPrice');
+            const foodList = document.getElementById('foodList');
+
+            // Load food items from localStorage
+            const loadFoodItems = () => {
+                const foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+                foodList.innerHTML = '';
+
+                foodItems.forEach((item, index) => {
+                    const foodDiv = document.createElement('div');
+                    foodDiv.className = 'food-item';
+                    foodDiv.innerHTML = `
+                        <span>${item.name} - ₹${item.price}</span>
+                        <div>
+                            <button class="edit" data-index="${index}">Edit</button>
+                            <button class="remove" data-index="${index}">Remove</button>
+                        </div>
+                    `;
+                    foodList.appendChild(foodDiv);
+                });
+
+                // Remove item
+                document.querySelectorAll('.food-item .remove').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        let foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+                        foodItems.splice(index, 1);
+                        localStorage.setItem('foodItems', JSON.stringify(foodItems));
+                        loadFoodItems(); // Reload
+                    });
+                });
+
+                // Edit item
+                document.querySelectorAll('.food-item .edit').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        let foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+                        const item = foodItems[index];
+                        foodNameInput.value = item.name;
+                        foodPriceInput.value = item.price;
+                        addFoodButton.textContent = 'Update Food';
+                        addFoodButton.dataset.index = index;
+                    });
+                });
+            };
+
+            // Add or update food
+            addFoodButton.addEventListener('click', () => {
+                const name = foodNameInput.value.trim();
+                const price = parseFloat(foodPriceInput.value.trim());
+                let foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+                const index = addFoodButton.dataset.index;
+
+                if (name && !isNaN(price)) {
+                    if (index !== undefined) {
+                        // Update existing item
+                        foodItems[index] = { name, price };
+                        addFoodButton.textContent = 'Add Food';
+                        delete addFoodButton.dataset.index;
+                    } else {
+                        // Add new item
+                        foodItems.push({ name, price });
+                    }
+
+                    localStorage.setItem('foodItems', JSON.stringify(foodItems));
+                    foodNameInput.value = '';
+                    foodPriceInput.value = '';
+                    loadFoodItems(); // Reload
+                }
+            });
+
+            // Initially load food items
+            loadFoodItems();
+        });
+
+        document.getElementById('clearDataBtn').addEventListener('click', () => {
+    if (confirm('Are you sure you want to clear all data? This action cannot be undone.')) {
+        localStorage.clear();
+        alert('All data has been cleared.');
+        location.reload();
+    }
+});
+
+    </script>
+</body>
+</html>

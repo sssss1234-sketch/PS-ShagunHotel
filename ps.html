@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shagun Hotel</title>
+    <link rel="stylesheet" href="ps.css">
+    <link rel="stylesheet" href="media.css">
+
+    <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* ROOT ELEMENTS */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+}
+
+
+:root{
+    --primary-text-color:#183b56;
+    --secondary-text-color :#577592;
+    --accent-color :#2294ed;
+    --accent-color-dark : #1d69a3;
+    --padding-inline-section:20px;
+    --background-color : rgba(245, 222, 179,0.9);
+}
+
+a{
+    text-decoration: none;
+    display: inline-block;
+}
+
+.container
+{
+ max-width: 1180px;
+ margin-inline: auto;
+ padding-inline: var(--padding-inline-section);   
+}
+
+.flex
+{
+display: flex;
+align-items: center;
+}
+
+.container1
+{
+    max-width: 1000px;
+    margin-inline: auto;
+   padding-inline: var(--padding-inline-section);   
+}
+
+.page2  .page3 .page4 .page5 
+{
+    justify-content: center;
+    align-items: center;
+    margin-left: 1.4rem;
+}
+
+.all-head
+{
+    font-size: 1.6rem;
+    font-family: poppins;
+    color: rgb(255, 0, 0);
+    text-align: start;
+    text-decoration: underline;
+    text-align: center;
+}
+
+li{
+    list-style: none;
+}
+
+
+/* TOP BANNER */
+
+.top-banners
+{
+    background-color: #4fb3d4;
+}
+
+.top-text
+{
+    font-size: 1rem;
+    color: white;
+    text-align: center;
+    padding: 15px 30px;
+    letter-spacing: 0.1rem;
+    font-family: roboto;
+    font-weight: bolder;
+}
+
+
+/* NAVBAR */
+
+.nav-box
+{
+    justify-content: space-between;
+    margin-top: 18px;
+}
+
+.hotel-name
+{
+    font-family: neuton;
+    font-weight: bolder;
+    color: var(--accent-color-dark);
+    width: 200px;
+}
+
+.nav-links ul{
+    justify-content: end;
+    gap: 30px;
+}
+
+.links{
+    color: var(--primary-text-color);
+    font-family: neuton;
+    font-weight: bolder;
+    font-size: 1rem;
+}
+
+.links:hover
+{
+    color: var(--accent-color);
+    transition: 0.3s ease-out;
+    text-decoration: underline;
+}
+
+.primary-bt
+{
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: white !important;
+    padding: 12px 24px ;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+}
+
+.primary-bt:hover{
+    background-color: var(--accent-color-dark);
+}
+.secondary-bt
+{
+    border: 0.5px solid var(--secondary-text-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color:var(--primary-text-color);
+    padding: 12px 24px ;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+}
+
+
+/* HERO SECTION */
+
+header{
+    padding: 50px var(--padding-inline-section) 0;
+}
+
+.page1
+{
+    height: 87vh;
+}
+
+.hero-main
+{
+    gap: 290px;
+}
+
+.hero-left
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 90px;
+    flex-wrap: wrap;
+}
+
+.hero-left p{
+    font-size: 2.5rem;
+    font-family: neuton;
+    font-weight: bolder;
+    color: var(--accent-color);
+    width: 300px;
+}
+
+.hero-left h3{
+ font-size: 1.6rem;
+ color: var(--secondary-text-color);
+ font-family: poppins;
+}
+
+.hero-left a
+{
+    width: 210px;
+    padding: 20px;
+}
+
+.hero-right img
+{
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+  flex-wrap: wrap;
+}
+
+
+/* ABOUT SECTION */
+
+.about-main
+{
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px;
+    background-color: var(--background-color);
+    border-radius: 30px;
+}
+
+.imgs
+{
+    width: 180px;
+    height: 200px;
+    border-radius: 30px;
+}
+
+.about-content p{
+    font-size: 1.1rem;
+    font-family: neuton;
+    line-height: 20px;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 0);
+}
+
+.about-img
+{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+
+/* CONTACT SECTION */
+
+.main-contact
+{
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px;
+    background-color: var(--background-color);
+    border-radius: 30px;
+    margin-top: 50px;
+}
+
+.contact-content p{
+    font-size: 1.3rem;
+    font-weight: bolder;
+    line-height: 40px;
+    font-family: neuton;
+    color:rgb(68, 68, 68) ;
+}
+
+
+/* MENU SECTION */
+
+.main-menu
+{
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px;
+    background-color: var(--background-color);
+    border-radius: 30px;
+    margin-top: 50px;
+}
+
+
+.search-bar {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.food-list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.food-item {
+    display: none;
+    justify-content: space-between;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 85%;
+}
+
+.food-item.visible {
+    display: flex;
+}
+
+.food-item button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #45a049;
+    color: white;
+    cursor: pointer;
+}
+
+.food-item button:hover {
+    background-color: #3e8e41;
+}
+
+.iframe-div 
+{
+    height: 400px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+    margin-left: 10%;
+}
+
+iframe
+{
+    height: 100%;
+    width: 100%;
+}
+
+
+/* Media queries for responsive design */
+
+@media (max-width: 480px) {
+    .listm-container {
+        width: 100%;
+    }
+}
+
+
+
+
+/* BOOKING SECTION */
+
+.book-main
+{
+    margin-top: 50px;
+    padding-top: 50px;
+    background-color: var(--background-color);
+    border-radius: 30px;
+}
+
+.book-content
+{
+    margin-top: 40px;
+}
+
+.detail
+{
+    font-size: 1.6rem;
+    margin-left: 64px;
+    font-family: neuton;
+}
+
+.data {
+    width: 90%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid rgba(110, 38, 14, 0.8);
+    border-radius: 0.5rem;
+    margin-left: 4rem;
+    font-family: neuton;
+}
+
+.sub-bt
+{
+   padding: 16px;
+   width: 150px;
+   border-radius: 16px;
+   text-align: center;
+   font-weight: bolder;
+   font-size: 20px;
+   background-color: var(--accent-color);
+   font-family: poppins;
+   color: white;
+}
+.sub-bt:hover
+{
+   background-color: rgb(0, 200, 133);
+   padding: 20px;
+   width: 160px;
+}
+
+.submit-bt
+{
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+/* HAMBURGER SECTION */
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--primary-text-color);
+}
+
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .nav-links {
+        display: none; /* Hide the navigation links by default */
+    }
+
+    .nav-links.active {
+        display: block;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: rgb(255, 223, 93);
+        z-index: 999;
+        border-radius: 1rem;
+        margin-left: 1rem;
+        padding-bottom: 3rem;
+        padding-top: 2rem;
+        margin-top: 2rem;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links ul li {
+        margin: 1px 0;
+    }
+
+    .nav-links ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .primary-bt, .secondary-bt {
+        width: 100%;
+    }
+}
+
+
+
+
+/* MEDIA QUERIES CSS */
+
+
+@media (max-width :430px)
+{
+.container
+{
+    max-width: 430px;
+}
+
+
+.top-text
+{
+    background-color: #4fb3d4;
+   width: 450px;
+}
+
+.nav-box{
+    margin-left: 1rem;
+}
+
+    .hero-main{
+        flex-direction: column;
+    }
+    .hero-right img {
+        margin: 0%;
+        padding: 0;
+        margin-top: -300px;
+    }
+   .page1
+   {
+     height: 100vh;
+     margin-left: 1rem;
+   }
+.page2 , .page3, .page4,.page5 
+{
+    justify-content: center;
+    align-items: center;
+    margin-left: 1.4rem;
+}
+
+   .about-img{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    }
+    .imgs{
+        width: 280px;
+    }
+    .about-content p
+    {
+     font-size: 1.1rem;
+     line-height: normal;
+     text-align: center;
+    }
+    .main-menu-content
+    {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .text
+    {
+    gap: 5px;
+    flex-direction: column;
+    margin: 0;
+
+    }
+    .food-text
+{
+  font-size: 1.3rem;
+  font-weight: bolder;
+  font-family: neuton;
+  text-align: center;
+}
+.price-text
+{
+  font-size: 1.3rem;
+  font-weight: bolder;
+  font-family: neuton;
+  text-align: center;
+}
+    
+    .item-1
+    {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    padding: 0%;
+    gap: 1px;
+    }
+
+    .add-bt
+{
+
+    font-weight: 700;
+    color: white !important;
+    padding: 5px 10px ;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contact-content p
+     {
+        font-size: 0.8rem;
+        font-weight: bolder;
+        line-height: 40px;
+        font-family: neuton;
+        color:rgb(68, 68, 68) 
+    }
+
+    .data {
+        width: 85%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border: 1px solid rgba(110, 38, 14, 0.8);
+        border-radius: 0.5rem;
+        margin-left: 2rem;
+        font-family: neuton;
+    }
+    .detail
+{
+    font-size: 1.6rem;
+margin-left: 2rem;
+    font-family: neuton;
+    margin-top: 1rem;
+}
+.about-content{
+    flex-direction:column
+}
+iframe
+{
+    height: 100%;
+    width: 100%;
+}
+
+.iframe-div 
+{
+    height: 160px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid black;
+    margin-left: 0;
+}
+
+}
+
+
+
+    </style>
+
+
+</head>
+<body>
+    
+<div class=" contianer top-banners">
+      <div class="top-text">Enjoy Our Delicious Food</div>
+</div>
+
+<nav>
+    <div class="container flex nav-box">
+        <div class="company-name">
+            <h1 class="hotel-name">Shagun Hotel</h1>
+        </div>
+
+        <!-- Hamburger icon -->
+        <div class="hamburger" onclick="toggleMenu()">
+            &#9776;
+        </div>
+
+        <div class="nav-links ">
+            <ul class="flex">
+                <li><a class="links" href="#header">Home</a></li>
+                <li><a class="links" href="#about">About</a></li>
+                <li><a class="links" href="#menu">Menu</a></li>
+                <li><a class="links" href="#contact">Contact</a></li>
+                <li><a class="links" href="#book">Book a Table</a></li>
+                <li><a class="links"  href="cart.html" onclick=location.reload()>Your Cart</a></li>
+                <li><a class="links" href="order.html" onclick=location.reload()>Your Orders</a></li>
+                <!-- <li><a class="links secondary-bt" href="">Sign in</a></li> -->
+                <li><a class="links primary-bt" href="login.html" onclick=location.reload() >Login / Sign up</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<header class="container page1" id="home">
+
+<div class="hero-main  flex">
+
+<div class="hero-left">
+    <p>Enjoy Our Delicious Food</p>
+    <h3>Pure Veg Restaurant</h3>
+    <a class="links primary-bt main-book-header" href="#book"> Book Your Table Now</a>
+</div>
+
+<div class="hero-right">
+<img src="istockphoto-495188382-612x612-removebg-preview.png">
+</div>
+</div>
+
+</header>
+
+<section class="container1 page2" id="about">
+
+<div class="about-main flex">
+
+<h3 class="all-head">About Us</h3>
+           
+<div class="about-img">
+<img class="imgs" src="shagun-restaurant-navagaon-dahisar-west-mumbai-home-delivery-restaurants-b6ggt.avif" alt="">
+<img class="imgs" src="shagun-restaurant-navagaon-dahisar-west-mumbai-home-delivery-restaurants-uy47y.avif" alt="">
+<img class="imgs" src="shagun-restaurant-navagaon-dahisar-west-mumbai-north-indian-restaurants-y1w2sd7wle.webp" alt="">
+<img class="imgs" src="shagun-restaurant-navagaon-dahisar-west-mumbai-home-delivery-restaurants-b6ggt.avif">
+</div>
+
+   
+
+<div class="about-content">
+     <p><strong> 1. Delicious Vegetarian Cuisine: </strong> <br>Enjoy a diverse range of classic & innovative vegetarian dishes, prepared with love.<br><br>
+  
+      <strong>2. Fresh Ingredients: </strong> <br>Our meals are crafted with care and the finest, freshest ingredients for a delightful taste.<br><br>
+      
+      <strong> 3.Inviting Atmosphere:</strong><br> Experience warm hospitality and a welcoming environment, designed for your comfort and joy.<br><br>
+      
+      <strong> 4.Memorable Moments:</strong><br> We focus on creating joyful dining experiences for every guest, making each visit special.<br><br>
+      
+      <strong>  5.Tradition & Innovation:</strong> <br>Blending traditional flavors with modern touches for a unique dining journey every time.</p><br>
+      </div>
+
+</div>
+</section>
+
+<section class="container1 page3" id="menu">
+
+<div class="main-menu">
+<div class="main-content">
+
+        <h3 class="all-head">Menu Page</h3>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Search for food...">
+        </div>
+
+        <div class="iframe-div">
+               <iframe src="https://online.flippingbook.com/view/770926418/" frameborder=""></iframe>
+        </div>
+
+        <!-- Food List -->
+        <div class="food-list listm-container" id="foodList">
+            <!-- Food items will be shown here -->
+        </div>
+        
+    </div>
+
+</div>
+</section>                          
+
+<section class="container1 page4" id="contact">
+
+<div class="main-contact flex">
+
+<h3 class="all-head">Contact US</h3>
+<div class="contact-content">
+<p>Phone Number :- 8956234508/5698235706<br>
+WhatsApp Number :- 8956234508/5698235706<br>
+Location :- Navagoan , Kandarpada Dahisar West Mumbai 400068<br></p></div>
+
+</div>
+</section>
+
+<section class=" container1 page5" id="book">
+<div class="book-main ">
+
+<h3 class="all-head">Book Your Table</h3>
+<div class="book-content">
+
+        <form 
+        action="https://formspree.io/f/mvgpybrz"
+        method="post">
+
+        <p class="detail">Name</p> 
+        <input type="text" class="data" placeholder="Enter Your Name" name="USER NAME" required>
+        </div>
+        
+        <div class="data-container">
+        <p class="detail">E-mail</p>
+        <input type="email" class="data" placeholder="Enter Your E-mail" name="USER E-MAIL" required></div>
+        
+        <div class="data-container">
+        <p class="detail">Number</p>
+        <input type="number" class="data" required placeholder="Enter Your Phone Number" name="USER PHONE NO" ></div>
+        
+        <div class="data-container">
+        <p class="detail"> Date</p>
+        <input type="date" class="data" placeholder="" name="DATE" required></div>
+        
+        <div class="data-container">
+        <p class="detail">Time</p>
+        <input type="time" class="data" placeholder="Enter The Time" name="TIME" required></div>
+        
+        <div class="data-container">
+        <p class="detail">Persons</p>
+        <input type="number" class="data" placeholder="Enter Total No. of Persons" name="NO. OF PERSONS" required></div>
+    
+    
+        <div class="submit-bt">
+            <button type="submit" class="sub-bt">Submit</button>
+        </div></form>
+</div>
+</div>
+</section>
+
+<script>
+
+
+document.addEventListener('DOMContentLoaded', function() {
+            const searchBar = document.getElementById('searchBar');
+            const foodList = document.getElementById('foodList');
+
+            // Load food items from localStorage
+            const loadFoodItems = () => {
+                const foodItems = JSON.parse(localStorage.getItem('foodItems')) || [];
+                foodList.innerHTML = '';
+
+                foodItems.forEach(item => {
+                    const foodDiv = document.createElement('div');
+                    foodDiv.className = 'food-item';
+                    foodDiv.innerHTML = `
+                        <span>${item.name} - ₹${item.price}</span>
+                        <button data-name="${item.name}" data-price="${item.price}">Add to Basket</button>
+                    `;
+                    foodList.appendChild(foodDiv);
+                });
+            };
+
+            loadFoodItems();
+
+            // Hide food items initially
+            const hideAllFoodItems = () => {
+                const foodItems = document.querySelectorAll('.food-item');
+                foodItems.forEach(item => item.classList.remove('visible'));
+            };
+
+            hideAllFoodItems();
+
+            // Search functionality
+            searchBar.addEventListener('input', function() {
+                const query = searchBar.value.trim().toLowerCase();
+                const foodItems = document.querySelectorAll('.food-item');
+
+                if (query === '') {
+                    hideAllFoodItems();  // If search input is empty, hide all items
+                } else {
+                    foodItems.forEach(item => {
+                        const itemName = item.querySelector('span').textContent.toLowerCase();
+                        if (itemName.includes(query)) {
+                            item.classList.add('visible');
+                        } else {
+                            item.classList.remove('visible');
+                        }
+                    });
+                }
+            });
+
+            // Add to Cart functionality
+            foodList.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') {
+                    const foodName = e.target.getAttribute('data-name');
+                    const foodPrice = parseFloat(e.target.getAttribute('data-price'));
+
+                    // Get existing cart or create new one
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+                    // Check if item already exists in the cart
+                    const existingItem = cart.find(item => item.name === foodName);
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ name: foodName, price: foodPrice, quantity: 1 });
+                    }
+
+                    // Save updated cart to localStorage
+                    localStorage.setItem('cart', JSON.stringify(cart));
+
+                    // Alert the user
+                    alert(`${foodName} added to basket successfully!`);
+                }
+            });
+        });
+
+        function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+}
+
+
+
+
+
+</script>
+</body>
+</html>

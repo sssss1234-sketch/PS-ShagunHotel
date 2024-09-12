@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6347;
+        }
+
+        .food-items, .delivery-details, .payment-method {
+            margin-bottom: 20px;
+            width: 98%;
+        }
+
+        .food-items h2, .delivery-details h2, .payment-method h2 {
+            color: #333;
+        }
+
+        .delivery-details input, .payment-method input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .delivery-details input[type="text"], .delivery-details input[type="tel"], .delivery-details input[type="number"] {
+            width: 100%;
+        }
+
+        .payment-method input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #e55335;
+        }
+
+        @media (max-width: 600px) {
+            .delivery-details input, .payment-method input {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Page</h1>
+        <div class="food-items">
+            <h2>Your Order</h2>
+            <ul id="foodList">
+                <!-- Food items will be dynamically injected here -->
+            </ul>
+        </div>
+
+        <div class="delivery-details">
+            <h2>Delivery Details</h2>
+            <input type="text" id="deliveryName" placeholder="Name" required>
+            <input type="tel" id="deliveryPhone" placeholder="Phone Number (10 digits)" pattern="\d{10}" required>
+            <input type="text" id="deliveryAddress" placeholder="Address (20 characters only)" maxlength="20" required>
+            <input type="text" id="deliveryDistrict" placeholder="District" required>
+            <input type="text" id="deliveryState" placeholder="State" required>
+            <input type="number" id="deliveryPincode" placeholder="Pincode" required>
+        </div>
+
+        <div class="payment-method">
+            <h2>Payment Method</h2>
+            <label><input type="radio" name="paymentMethod" value="UPI" required> UPI</label><br>
+            <label><input type="radio" name="paymentMethod" value="COD" required> Cash on Delivery</label><br>
+            <label><input type="radio" name="paymentMethod" value="Bank Transfer" required> Bank Transfer</label>
+        </div>
+
+        <button class="button" onclick="handlePayment()">Next</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+           
+
+
+            const foodList = document.getElementById('foodList');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - ₹${item.price} x ${item.quantity}`;
+                foodList.appendChild(listItem);
+            });
+        });
+
+        function handlePayment() {
+          
+            
+            const deliveryName = document.getElementById('deliveryName').value;
+            const deliveryPhone = document.getElementById('deliveryPhone').value;
+            const deliveryAddress = document.getElementById('deliveryAddress').value;
+            const deliveryDistrict = document.getElementById('deliveryDistrict').value;
+            const deliveryState = document.getElementById('deliveryState').value;
+            const deliveryPincode = document.getElementById('deliveryPincode').value;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+           
+            
+            localStorage.setItem('deliveryName', deliveryName);
+            localStorage.setItem('deliveryPhone', deliveryPhone);
+            localStorage.setItem('deliveryAddress', deliveryAddress);
+            localStorage.setItem('deliveryDistrict', deliveryDistrict);
+            localStorage.setItem('deliveryState', deliveryState);
+            localStorage.setItem('deliveryPincode', deliveryPincode);
+            localStorage.setItem('paymentMethod', paymentMethod);
+
+            
+            window.location.href = 'pay.html';
+        }
+    </script>
+</body>
+</html>

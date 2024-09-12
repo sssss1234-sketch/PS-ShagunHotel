@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <style>
+
+
+.payment-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+#qrCodeContainer {
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+.orders-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.order-item h3 {
+    margin-top: 0;
+}
+
+.order-item ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.order-item li {
+    margin: 5px 0;
+}
+
+.order-item p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+
+.orders-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.order-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.order-item h3 {
+    margin-top: 0;
+}
+
+.order-item ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.order-item li {
+    margin: 5px 0;
+}
+
+.order-item p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+button:hover {
+    background-color: #c82333;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <h1>My Orders</h1>
+        
+        <div id="orders-list">
+            <!-- LOCAL STORAGE -->
+        </div>
+        <button id="clearOrdersBtn">Clear All Orders</button>
+    </div>
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const ordersList = document.getElementById('orders-list');
+    const clearOrdersBtn = document.getElementById('clearOrdersBtn');
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    function displayOrders() {
+        if (orders.length === 0) {
+            ordersList.innerHTML = "<p>You have no orders yet.</p>";
+        } else {
+            ordersList.innerHTML = ''; 
+            orders.forEach(order => {
+                const orderElement = document.createElement('div');
+                orderElement.classList.add('order-item');
+                orderElement.innerHTML = `
+                    <h3>Order Date: ${order.date}</h3>
+                    <ul>
+                        ${order.items.map(item => `
+                            <li>${item.name} - ₹${item.price.toFixed(2)} x ${item.quantity}</li>
+                        `).join('')}
+                    </ul>
+                    <p><strong>Total: ₹${order.total.toFixed(2)}</strong></p>
+                `;
+                ordersList.appendChild(orderElement);
+            });
+        }
+    }
+
+    function clearOrders() {
+        localStorage.removeItem('orders');
+        ordersList.innerHTML = "<p>Your orders have been cleared.</p>";
+    }
+
+    clearOrdersBtn.addEventListener('click', clearOrders);
+
+ 
+    displayOrders();
+});
+
+
+    </script>
+</body>
+</html>
