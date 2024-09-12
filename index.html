@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login, Sign-Up & Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('restaurant-background.jpg'); /* Add your restaurant-themed background image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff6347;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            background-color: #e55335;
+        }
+
+        .form-group .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .tab-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background-color: #ff6347;
+            color: #fff;
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-container">
+            <div class="tab active" onclick="showForm('signup')">Sign Up</div>
+            <div class="tab" onclick="showForm('login')">Login</div>
+            <div class="tab" onclick="showForm('admin')">Admin Panel</div>
+        </div>
+        
+        <div id="signup" class="form-content active">
+            <h2>Sign Up</h2>
+            <div class="form-group">
+                <label for="signupName">Name</label>
+                <input type="text" id="signupName" placeholder="Enter your name">
+                <div class="error" id="signupNameError"></div>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email">
+                <div class="error" id="signupEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" placeholder="Enter your password">
+                <div class="error" id="signupPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <button onclick="signUp()">Sign Up</button>
+            </div>
+        </div>
+
+        <div id="login" class="form-content">
+            <h2>Login</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email">
+                <div class="error" id="loginEmailError"></div>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+                <div class="error" id="loginPasswordError"></div>
+            </div>
+            
+            <div class="form-group">
+                <button onclick="login()">Login</button>
+            </div>
+        </div>
+
+        <div id="admin" class="form-content">
+            <h2>Admin Panel</h2>
+            <div class="form-group">
+                <label for="adminPassword">Admin Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter admin password">
+                <div class="error" id="adminPasswordError"></div>
+            </div>
+            <div class="form-group">
+                <button onclick="adminLogin()">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const showForm = (formId) => {
+            document.querySelectorAll('.form-content').forEach(form => {
+                form.classList.remove('active');
+            });
+            document.getElementById(formId).classList.add('active');
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.tab[onclick="showForm('${formId}')"]`).classList.add('active');
+        };
+
+        const signUp = () => {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            let valid = true;
+
+            if (!name) {
+                document.getElementById('signupNameError').innerText = 'Name is required';
+                valid = false;
+            } else {
+                document.getElementById('signupNameError').innerText = '';
+            }
+
+            if (!email) {
+                document.getElementById('signupEmailError').innerText = 'Email is required';
+                valid = false;
+            } else {
+                document.getElementById('signupEmailError').innerText = '';
+            }
+
+            if (!password) {
+                document.getElementById('signupPasswordError').innerText = 'Password is required';
+                valid = false;
+            } else {
+                document.getElementById('signupPasswordError').innerText = '';
+            }
+
+            if (valid) {
+                const userData = { name, email, password };
+                localStorage.setItem('user', JSON.stringify(userData));
+                alert('Sign Up successful!');
+                // Simulate sending a verification code
+                localStorage.setItem('verificationCode', Math.floor(1000 + Math.random() * 9000));
+                showForm('login');
+            }
+        };
+
+        const login = () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+        
+
+            let valid = true;
+
+            if (!email) {
+                document.getElementById('loginEmailError').innerText = 'Email is required';
+                valid = false;
+            } else {
+                document.getElementById('loginEmailError').innerText = '';
+            }
+
+            if (!password) {
+                document.getElementById('loginPasswordError').innerText = 'Password is required';
+                valid = false;
+            } else {
+                document.getElementById('loginPasswordError').innerText = '';
+            }
+
+            
+            if (valid) {
+                const userData = JSON.parse(localStorage.getItem('user'));
+                const storedCode = localStorage.getItem('verificationCode');
+
+                if (userData && userData.email === email && userData.password === password) {
+                    alert('Login successful!');
+                    // Redirect to another page
+                    window.location.href = 'ps.html'; // Change this URL to your actual page
+                } else {
+                    alert('Invalid credentials or verification code');
+                }
+            }
+        };
+
+        const adminLogin = () => {
+            const password = document.getElementById('adminPassword').value;
+
+            if (password === 'admin') {
+                // Redirect to the admin panel page
+                window.location.href = 'admin.html'; // Change this URL to your actual page
+            } else {
+                document.getElementById('adminPasswordError').innerText = 'Incorrect password';
+            }
+        };
+
+
+        
+    </script>
